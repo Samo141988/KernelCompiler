@@ -1,0 +1,55 @@
+name: Build Kernel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1️⃣ Checkout code
+        uses: actions/checkout@v2
+
+      - name: 2️⃣ Installing packages.
+        run: |
+          sudo apt update -y && sudo apt upgrade -y && sudo apt install nano bc bison ca-certificates curl flex gcc git libc6-dev libssl-dev openssl python-is-python3 ssh wget zip zstd sudo make clang gcc-arm-linux-gnueabi software-properties-common build-essential libarchive-tools gcc-aarch64-linux-gnu -y && sudo apt install build-essential -y && sudo apt install libssl-dev libffi-dev libncurses5 libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev libsqlite3-dev make gcc -y && sudo apt install pigz -y && sudo apt install python2 -y && sudo apt install python3 -y && sudo apt install cpio -y && sudo apt install lld -y && sudo apt install p7zip-full -y && sudo apt install python3-pip && pip3 install pyrogram && pip3 install tgcrypto
+
+      - name: 3️⃣ Cloning toolchain aarch64 4.9
+        run: |
+          git clone https://github.com/Al-Noman-12/aarch64-linux-android-4.9
+
+      - name: 4️⃣ Cloning clang-r383902 
+        run: |
+          git clone https://github.com/Al-Noman-12/clang-r383902
+
+      - name: 5️⃣ Cloning kernel source.
+        run: |
+          git clone https://github.com/Al-Noman-12/A225FXXU6DWE3 kernel_source
+
+      - name: 6️⃣ Starting kernel compile.
+        run: |
+          cd kernel_source && bash build_kernel.sh
+
+      - name: 7️⃣ Making pyrogram module.
+        run: |
+          echo 'from subprocess import run as srun
+          from os import path as ospath, remove as osremove
+          from pyrogram import Client, types
+
+          TELEGRAM_API = "2076846"
+          TELEGRAM_HASH = "a7c38b63155953f8c529718a3ac0003a"
+          BOT_TOKEN = "6451097481:AAFXVn9LO41_J2LtEbfEQ5cyhF3ol1wbRvM"
+          OWNER_ID = "2081111916"
+
+          if ospath.exists("kernel_source/arch/arm64/boot/Image.xz"):
+              osremove("kernel_source/arch/arm64/boot/Image.xz")
+
+          if ospath.exists("kernel_source/arch/arm64/boot/Image"):
+              srun(["7z", "a", "-mx9", "kernel_source/arch/arm64/boot/Image.xz", "kernel_source/arch/arm64/boot/Image"])
+
+          if ospath.exists("kernel_source/arch/arm64/boot/Image.xz"):
+              bot = Client("bot", api_id=int(TELEGRAM_API), api_hash=TELEGRAM_HASH, bot_token=BOT_TOKEN, workers=1000).start()
+              bot.send_document(chat_id=int(OWNER_ID), document="kernel_source/arch/arm64/boot/Image.xz")' > upload_kernel_in_telegram.py && python3 upload_kernel_in_telegram.py

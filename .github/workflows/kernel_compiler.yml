@@ -23,9 +23,7 @@ jobs:
 
       - name: 4️⃣ Making toolchain and clang directory
         run: |
-            cd kernel_source
-            mkdir -p toolchain/gcc/linux-x86/aarch64
-            mkdir -p toolchain/clang/host/linux-x86
+            mkdir -p kernel_source/toolchain/gcc/linux-x86/aarch64 && mkdir -p kernel_source/toolchain/clang/host/linux-x86
 
       - name: 5️⃣ Cloning toolchain aarch64 4.9
         run: |
@@ -37,7 +35,7 @@ jobs:
      
       - name: 7️⃣ Starting kernel compile.
         run: |
-          bash build_kernel.sh
+          cd kernel_source && bash build_kernel.sh
 
       - name: 8️⃣ Making pyrogram module.
         run: |

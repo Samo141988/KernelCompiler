@@ -16,12 +16,12 @@ jobs:
       - name: 3️⃣ Cloning kernel source.
         run: |
           git clone -b A225FXXS9DXE2 https://github.com/SN-Abdullah-Al-Noman/SM-A225X kernel_source
-          chmod -R 777 kernel_source/toolchain
 
       - name: 4️⃣ Making toolchain and clang directory
         run: |
             mkdir -p kernel_source/toolchain/gcc/linux-x86/aarch64 && mkdir -p kernel_source/toolchain/clang/host/linux-x86
-
+            chmod -R 777 kernel_source/toolchain
+      
       - name: 5️⃣ Cloning toolchain aarch64 4.9
         run: |
           git clone https://github.com/SN-Abdullah-Al-Noman/aarch64-linux-android-4.9 toolchain/gcc/linux-x86/aarch64

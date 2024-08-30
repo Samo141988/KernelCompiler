@@ -16,6 +16,7 @@ jobs:
       - name: 3️⃣ Cloning kernel source.
         run: |
           git clone -b A225FXXS9DXE2 https://github.com/SN-Abdullah-Al-Noman/SM-A225X kernel_source
+          chmod -R 777 kernel_source/toolchain
 
       - name: 4️⃣ Making toolchain and clang directory
         run: |

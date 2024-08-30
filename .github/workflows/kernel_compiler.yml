@@ -19,15 +19,15 @@ jobs:
 
       - name: 3️⃣ Cloning toolchain aarch64 4.9
         run: |
-          git clone https://github.com/Al-Noman-12/aarch64-linux-android-4.9
+          git clone https://github.com/SN-Abdullah-Al-Noman/aarch64-linux-android-4.9
 
       - name: 4️⃣ Cloning clang-r383902 
         run: |
-          git clone https://github.com/Al-Noman-12/clang-r383902
+          git clone https://github.com/SN-Abdullah-Al-Noman/clang-r383902
 
       - name: 5️⃣ Cloning kernel source.
         run: |
-          git clone https://github.com/Al-Noman-12/A225FXXU6DWE3 kernel_source
+          git clone https://github.com/SN-Abdullah-Al-Noman/A225FXXU6DWE3 kernel_source
 
       - name: 6️⃣ Starting kernel compile.
         run: |

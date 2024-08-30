@@ -16,27 +16,28 @@ jobs:
       - name: 2️⃣ Installing packages.
         run: |
           sudo apt update -y && sudo apt upgrade -y && sudo apt install nano bc bison ca-certificates curl flex gcc git libc6-dev libssl-dev openssl python-is-python3 ssh wget zip zstd sudo make clang gcc-arm-linux-gnueabi software-properties-common build-essential libarchive-tools gcc-aarch64-linux-gnu -y && sudo apt install build-essential -y && sudo apt install libssl-dev libffi-dev libncurses5 libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev libsqlite3-dev make gcc -y && sudo apt install pigz -y && sudo apt install python2 -y && sudo apt install python3 -y && sudo apt install cpio -y && sudo apt install lld -y && sudo apt install p7zip-full -y && sudo apt install python3-pip && pip3 install pyrogram && pip3 install tgcrypto
-     
+
       - name: 3️⃣ Cloning kernel source.
         run: |
-          git clone https://github.com/SN-Abdullah-Al-Noman/A325FXXU6DWH3 kernel_source
+          git clone https://github.com/Al-Noman-12/A225FXXU6DWE3 kernel_source
 
       - name: 4️⃣ Making toolchain and clang directory
         run: |
-            mkdir -p kernel_source/toolchain/gcc/linux-x86/aarch64 && mkdir -p kernel_source/toolchain/clang/host/linux-x86
-            chmod -R 777 kernel_source/toolchain
-      
+            cd kernel_source
+            mkdir -p toolchain/gcc/linux-x86/aarch64
+            mkdir -p toolchain/clang/host/linux-x86
+
       - name: 5️⃣ Cloning toolchain aarch64 4.9
         run: |
-          git clone https://github.com/SN-Abdullah-Al-Noman/aarch64-linux-android-4.9 kernel_source/toolchain/gcc/linux-x86/aarch64
+          git clone https://github.com/Al-Noman-12/aarch64-linux-android-4.9 /toolchain/gcc/linux-x86/aarch64
 
       - name: 6️⃣ Cloning clang-r383902 
         run: |
-          git clone https://github.com/SN-Abdullah-Al-Noman/clang-r383902 kernel_source/toolchain/clang/host/linux-x86
-
+          git clone https://github.com/Al-Noman-12/clang-r383902 /toolchain/clang/host/linux-x86
+     
       - name: 7️⃣ Starting kernel compile.
         run: |
-          cd kernel_source && bash build_kernel.sh
+          bash build_kernel.sh
 
       - name: 8️⃣ Making pyrogram module.
         run: |

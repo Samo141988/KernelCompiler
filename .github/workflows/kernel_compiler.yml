@@ -27,7 +27,7 @@ jobs:
 
       - name: 5️⃣ Cloning kernel source.
         run: |
-          git clone -b E225FXXSADXE1 https://github.com/SN-Abdullah-Al-Noman/SM-E225F kernel_source
+          git clone -b E225FXXSADXE1 https://github.com/SN-Abdullah-Al-Noman/SM-E225X kernel_source
 
       - name: 6️⃣ Starting kernel compile.
         run: |

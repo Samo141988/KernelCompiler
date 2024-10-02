@@ -30,8 +30,8 @@ jobs:
 
       - name: 5️⃣ Cloning kernel source.
         run: |
-          git clone ${{ github.event.inputs.BRANCH+GIT_URL }} kernel_source
-
+          git clone ${{ github.event.inputs.BRANCH_GIT_URL }} kernel_source
+      
       - name: 6️⃣ Starting kernel compile.
         run: |
           cd kernel_source && bash build_kernel.sh

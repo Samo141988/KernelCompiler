@@ -1,9 +1,11 @@
 name: Build Kernel
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      BRANCH+Git_URL:
+        description: 'BRANCH+Git_URL to clone kernel source'
+        required: true
 
 jobs:
   build:
@@ -27,7 +29,7 @@ jobs:
 
       - name: 5️⃣ Cloning kernel source.
         run: |
-          git clone -b E225FXXSADXE1 https://github.com/SN-Abdullah-Al-Noman/SM-E225X kernel_source
+          git clone -b ${{ github.event.inputs.BRANCH+Git_URL }} kernel_source
 
       - name: 6️⃣ Starting kernel compile.
         run: |

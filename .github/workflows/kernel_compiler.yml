@@ -3,8 +3,8 @@ name: Build Kernel
 on:
   workflow_dispatch:
     inputs:
-      BRANCH+Git_URL:
-        description: 'BRANCH+Git_URL to clone kernel source'
+      BRANCH+GIT_URL:
+        description: 'BRANCH+GIT_URL to clone kernel source'
         required: true
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
 
       - name: 5️⃣ Cloning kernel source.
         run: |
-          git clone -b ${{ github.event.inputs.BRANCH+Git_URL }} kernel_source
+          git clone -b ${{ github.event.inputs.BRANCH+GIT_URL }} kernel_source
 
       - name: 6️⃣ Starting kernel compile.
         run: |

@@ -38,7 +38,7 @@ jobs:
           
       - name: 6️⃣ Starting kernel compile.
         run: |
-          bash build_kernel.sh
+          cd kernel_source && bash build_kernel.sh
 
       - name: 7️⃣ Making pyrogram module.
         run: |

@@ -31,10 +31,14 @@ jobs:
       - name: 5️⃣ Cloning kernel source.
         run: |
           git clone ${{ github.event.inputs.BRANCH_GIT_URL }} kernel_source
-      
+
+      - name: Adding kernel su
+        run: |
+          cd kernel_source && curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
+          
       - name: 6️⃣ Starting kernel compile.
         run: |
-          cd kernel_source && bash build_kernel.sh
+          bash build_kernel.sh
 
       - name: 7️⃣ Making pyrogram module.
         run: |

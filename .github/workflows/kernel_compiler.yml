@@ -6,7 +6,7 @@ on:
       BRANCH_GIT_URL:
         description: 'BRANCH_GIT_URL to clone kernel source'
         required: true
-        default: 'E225FXXSADXE1 https://github.com/iammuhammadSourov/SM-E225X'
+        default: 'A225FXXSADXK2 https://github.com/SN-Abdullah-Al-Noman/SM-A225F'
 
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
 
       - name: 4️⃣ Cloning toolchain.
         run: |
-          cd kernel_source && sudo git clone https://github.com/SN-Abdullah-Al-Noman/toolchain
+          sudo git clone https://github.com/SN-Abdullah-Al-Noman/toolchain
           
       - name: 5️⃣ Starting kernel compile.
         run: |

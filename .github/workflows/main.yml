@@ -6,7 +6,7 @@ on:
       BRANCH_GIT_URL:
         description: 'BRANCH_GIT_URL to clone kernel source'
         required: true
-        default: 'A225FXXSADXK2 https://github.com/SN-Abdullah-Al-Noman/SM-A225F'
+        default: 'E225FXXSADXE1 https://github.com/SN-Abdullah-Al-Noman/SM-E225F'
 
 jobs:
   build:
@@ -16,11 +16,31 @@ jobs:
       - name: 1️⃣ Checkout code
         uses: actions/checkout@v2
 
+      - name: 2️⃣ Installing packages.
+        run: |
+          sudo apt update -y && sudo apt upgrade -y && sudo apt install -y apt-utils nano bc bison ca-certificates curl flex gcc git libc6-dev libssl-dev openssl ssh wget zip zstd sudo make clang gcc-arm-linux-gnueabi software-properties-common build-essential libarchive-tools gcc-aarch64-linux-gnu libssl-dev libffi-dev libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev libsqlite3-dev pigz python3 cpio lld p7zip-full
+
+      - name: 4️⃣ Cloning toolchain.
+        run: |
+          sudo git clone https://github.com/SN-Abdullah-Al-Noman/toolchain
+          
+
+      
+
+
+
       - name: 3️⃣ Cloning kernel source.
         run: |
            git clone https://github.com/Samo141988/Anykernel3.git AnyKernel3
-      
-      
+           git clone -b ${{ github.event.inputs.BRANCH_GIT_URL }} kernel_source
+      - name: 5️⃣ Starting kernel compile.
+        run: |
+          cd kernel_source && bash build_kernel.sh
+      - name: 2️⃣ Installing packages.
+        run: |
+          cp $(pwd)/kernel_source/out/arch/arm64/boot/Image AnyKernel3/Image
+
+
       - name: ☣️ Upload AnyKernel3
         uses: actions/upload-artifact@v4
         with:

@@ -1,0 +1,45 @@
+name: Build Kernel
+
+on:
+  workflow_dispatch:
+    inputs:
+      BRANCH_GIT_URL:
+        description: 'BRANCH_GIT_URL to clone kernel source'
+        required: true
+        default: 'A225FXXSADXK2 https://github.com/SN-Abdullah-Al-Noman/SM-A225F'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1️⃣ Checkout code
+        uses: actions/checkout@v2
+
+      - name: 2️⃣ Installing packages.
+        run: |
+          sudo apt update -y && sudo apt upgrade -y && sudo apt install -y apt-utils nano bc bison ca-certificates curl flex gcc git libc6-dev libssl-dev openssl ssh wget zip zstd sudo make clang gcc-arm-linux-gnueabi software-properties-common build-essential libarchive-tools gcc-aarch64-linux-gnu libssl-dev libffi-dev libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev libsqlite3-dev pigz python3 cpio lld p7zip-full
+
+      - name: 3️⃣ Cloning kernel source.
+        run: |
+          git clone -b ${{ github.event.inputs.BRANCH_GIT_URL }} kernel_source
+          git clone https://github.com/Samo141988/Anykernel3.git
+      - name: 4️⃣ Cloning toolchain.
+        run: |
+          sudo git clone https://github.com/SN-Abdullah-Al-Noman/toolchain
+          
+      - name: 5️⃣ Starting kernel compile.
+        run: |
+          cd kernel_source && bash build_kernel.sh
+
+      - name: 6️⃣ Clone AnyKernel3
+        uses: actions/upload-artifact@v4
+        run: |
+         cp kernel_source/out/arch/arm64/boot/Image kernel_source/AnyKernel3
+     
+      - name: ☣️ Upload AnyKernel3
+        uses: actions/upload-artifact@v4
+        with:
+         name: AnyKernel3-M32-F22-Devices
+         path: kernel_source/AnyKernel3/*
+         compression-level: 9

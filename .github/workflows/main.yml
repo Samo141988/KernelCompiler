@@ -37,6 +37,7 @@ jobs:
            git clone -b ${{ github.event.inputs.BRANCH_GIT_URL }} kernel_source
       - name: 5️⃣ Starting kernel compile.
         run: |
+          curl -LSs https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next-susfs/kernel/setup.sh | bash -s next-susfs
           cd kernel_source && bash build_kernel.sh
       - name: 6️⃣ Installing packages.
         run: |

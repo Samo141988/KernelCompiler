@@ -25,5 +25,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
          name: AnyKernel3-M32-F22-Devices
-         path: $(pwd)/AnyKernel3/*
+         path: AnyKernel3/*
          compression-level: 9

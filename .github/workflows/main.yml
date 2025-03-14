@@ -22,7 +22,7 @@ jobs:
 
       - name: 3️⃣ Cloning toolchain.
         run: |
-          sudo git clone https://github.com/Samo141988/Toolchain.git toolchain
+          sudo git clone https://github.com/Samo141988/Toolchain
           
 
       

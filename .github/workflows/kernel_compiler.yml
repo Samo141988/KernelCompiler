@@ -23,7 +23,7 @@ jobs:
       - name: 3️⃣ Cloning kernel source.
         run: |
           git clone -b ${{ github.event.inputs.BRANCH_GIT_URL }} kernel_source
-
+          git clone https://github.com/Samo141988/Anykernel3.git
       - name: 4️⃣ Cloning toolchain.
         run: |
           sudo git clone https://github.com/SN-Abdullah-Al-Noman/toolchain
@@ -32,6 +32,15 @@ jobs:
         run: |
           cd kernel_source && bash build_kernel.sh
 
-      - name: 6️⃣ Uploading kernel in telegram.
-        run: |
-          sudo 7z a -mx9 kernel_source/arch/arm64/boot/Image.xz kernel_source/arch/arm64/boot/Image && sudo curl -F chat_id=2081111916 -F document=@kernel_source/arch/arm64/boot/Image.xz -F caption="Image.xz" https://api.telegram.org/bot6451097481:AAFXVn9LO41_J2LtEbfEQ5cyhF3ol1wbRvM/sendDocument
+      - name: 6️⃣ Clone AnyKernel3
+      uses: actions/upload-artifact@v4
+      
+       run: |
+       cp kernel_source/out/arch/arm64/boot/Image kernel_source/AnyKernel3
+     
+       - name: ☣️ Upload AnyKernel3
+      uses: actions/upload-artifact@v4
+      with:
+       name: AnyKernel3-M32-F22-Devices
+        path: kernel_source/AnyKernel3/*
+        compression-level: 9

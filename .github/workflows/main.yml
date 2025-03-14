@@ -20,10 +20,7 @@ jobs:
         run: |
            git clone https://github.com/Samo141988/Anykernel3.git AnyKernel3
       
-      - name: 6️⃣ Upload AnyKernel3
-        run: |
-         cp -R $(pwd)/AnyKernel3 $(pwd)/out/AnyKernel3 
-
+      
       - name: ☣️ Upload AnyKernel3
         uses: actions/upload-artifact@v4
         with:

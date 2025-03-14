@@ -18,8 +18,10 @@ jobs:
 
       - name: 2️⃣ Installing packages.
         run: |
-          sudo apt update -y && sudo apt upgrade -y && sudo apt install -y apt-utils nano gcc clang bc python3 bison ca-certificates curl flex git libc6-dev libssl-dev openssl ssh wget zip zstd sudo make software-properties-common build-essential libarchive-tools libssl-dev libffi-dev libncurses5-dev zlib1g zlib1g-dev libreadline-dev libbz2-dev libsqlite3-dev pigz cpio p7zip-full
-
+         sudo apt update -y
+         sudo apt install bc cpio flex bison aptitude git python-is-python3 tar perl wget curl lz4 -y
+         sudo aptitude install libssl-dev -y
+         
       - name: 3️⃣ Cloning toolchain.
         run: |
           sudo git clone https://github.com/Samo141988/toolchain

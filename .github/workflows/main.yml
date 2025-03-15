@@ -6,7 +6,7 @@ on:
       BRANCH_GIT_URL:
         description: 'BRANCH_GIT_URL to clone kernel source'
         required: true
-        default: 'sadxe1 https://github.com/Samo141988/f22-wifi'
+        default: 'f22-4.14.355-openela https://github.com/Samo141988/android_kernel_samsung_a22_remake'
 
 jobs:
   build:

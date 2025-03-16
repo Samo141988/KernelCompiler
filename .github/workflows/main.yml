@@ -37,7 +37,7 @@ jobs:
       - name: 5️⃣ Starting kernel compile.
         run: |
           cd kernel_source
-          curl -LSs https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next-susfs/kernel/setup.sh | bash -s next-susfs
+          curl -LSs https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next-susfs/kernel/setup.sh | bash -s next
           bash scripts/config --disable CONFIG_CC_STACKPROTECTOR_STRONG
           bash scripts/config --disable CONFIG_CC_STACKPROTECTOR_REGULAR
           bash build_kernel.sh

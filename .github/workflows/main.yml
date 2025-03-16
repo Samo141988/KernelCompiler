@@ -39,6 +39,8 @@ jobs:
         run: |
           cd kernel_source
           curl -LSs https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next-susfs/kernel/setup.sh | bash -s next-susfs
+          bash scripts/config --disable CONFIG_CC_STACKPROTECTOR_STRONG
+          bash scripts/config --disable CONFIG_CC_STACKPROTECTOR_REGULAR
           bash build_kernel.sh
       - name: 6️⃣ Installing packages.
         run: |
